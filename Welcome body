@@ -1,0 +1,58 @@
+using System;
+
+public class LongFunctionExample
+{
+    public void ComplexCalculation(int[] numbers)
+    {
+        // Validate input
+        if (numbers == null || numbers.Length == 0)
+        {
+            throw new ArgumentException("Input array cannot be null or empty.");
+        }
+
+        // Perform complex calculation
+        int result = 0;
+        for (int i = 0; i < numbers.Length; i++)
+        {
+            if (IsPrime(numbers[i]))
+            {
+                result += numbers[i] * 2; // Double the prime numbers
+            }
+            else if (IsEven(numbers[i]))
+            {
+                result -= numbers[i] / 2; // Halve the even numbers
+            }
+            else
+            {
+                result += numbers[i]; // Add non-prime, odd numbers as is
+            }
+        }
+
+        // Print result
+        Console.WriteLine("Result of complex calculation: " + result);
+    }
+
+    private bool IsPrime(int number)
+    {
+        if (number <= 1)
+            return false;
+        if (number <= 3)
+            return true;
+
+        if (number % 2 == 0 || number % 3 == 0)
+            return false;
+
+        for (int i = 5; i * i <= number; i += 6)
+        {
+            if (number % i == 0 || number % (i + 2) == 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool IsEven(int number)
+    {
+        return number % 2 == 0;
+    }
+}
